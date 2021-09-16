@@ -1,4 +1,5 @@
 const assert = require('assert');
+const path = require('path');
 
 if (require.main == module) {
   const env = try_get_env();
@@ -28,7 +29,9 @@ if (require.main == module) {
 }
 
 function try_get_env() {
-  const env_output = require('dotenv').config();
+  const env_output = require('dotenv').config({
+    path: path.join(__dirname, '.env')
+  });
   if (env_output.error) {
     console.error(env_output.error);
     process.exit(1);
