@@ -1,6 +1,8 @@
 const webpack = require('webpack');
+const dotenv = require('dotenv-webpack');
 
-const PORT = process.env.PORT || 2199;
+const { env, env_path } = require('../../utils/env');
+const common_paths = require('./common-paths');
 
 const config = {
   mode: 'development',
@@ -11,14 +13,21 @@ const config = {
   optimization: {
     minimize: false
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new dotenv({ path: env_path })
+  ],
   devServer: {
     host: 'localhost',
     allowedHosts: 'all',
-    port: PORT,
+    port: env.DEV_PORT,
     historyApiFallback: true,
     hot: true,
-    open: false
+    open: false,
+    proxy: {
+      '/api': `http://localhost:${env.API_PORT}`,
+    },
+    static: [{directory: common_paths.public_root}]
   }
 };
 

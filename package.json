@@ -4,8 +4,8 @@
   "description": "swordsman game",
   "main": "server/index.js",
   "scripts": {
-    "local": "NODE_ENV=development webpack serve --env=dev",
-    "build": "NODE_ENV=production webpack --env=prod",
+    "local": "NODE_ENV=development webpack serve --env=IS_DEV",
+    "build": "NODE_ENV=production webpack --env=IS_PROD",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "@koa/router": "^10.1.1",
     "dotenv": "^10.0.0",
     "koa": "^2.13.1",
+    "koa-static": "^5.0.0",
     "mongoose": "^6.0.6"
   },
   "devDependencies": {

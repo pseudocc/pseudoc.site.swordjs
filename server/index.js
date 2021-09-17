@@ -1,8 +1,7 @@
 const assert = require('assert');
-const path = require('path');
 
 if (require.main == module) {
-  const env = try_get_env();
+  const env = require('../utils/env');
   const Koa = require('koa');
   const Router = require('@koa/router');
 
@@ -23,18 +22,7 @@ if (require.main == module) {
     .use(router.routes())
     .use(router.allowedMethods());
   
-  app.listen(env.HTTP_PORT, () => {
-    console.log('Swordjs server is hosting on port %d', env.HTTP_PORT);
+  app.listen(env.API_PORT, () => {
+    console.log('Swordjs server is hosting on port %d', env.API_PORT);
   });
-}
-
-function try_get_env() {
-  const env_output = require('dotenv').config({
-    path: path.resolve(__dirname, '..', '.env')
-  });
-  if (env_output.error) {
-    console.error(env_output.error);
-    process.exit(1);
-  }
-  return env_output.parsed;
 }
