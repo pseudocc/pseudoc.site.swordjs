@@ -13,7 +13,7 @@ const config = {
       name: false
     }
   },
-  plugins: [new analyzer({ analyzerMode: 'static' })]
+  plugins: [new analyzer({ analyzerMode: 'static', openAnalyzer: false })]
 };
 
 module.exports = config;
