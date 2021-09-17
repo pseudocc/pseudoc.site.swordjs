@@ -1,4 +1,9 @@
 import React from 'react';
-const LoginPage = () => <div>Hello from Login Page</div>;
+import axios from 'axios';
+
+const LoginPage = () => {
+  axios.post('/api/login');
+  return <div>Hello from Login Page</div>;
+};
 
 export default LoginPage;
