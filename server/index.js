@@ -4,13 +4,14 @@ if (require.main == module) {
   const { env } = require('../utils/env');
   const Koa = require('koa');
   const Router = require('@koa/router');
-  const logger = require('koa-logger');
 
   const app = new Koa();
   const router = new Router();
+  const logger = require('koa-logger');
   const api_router = require('./api/routes');
 
   assert.ok(env.API_PORT !== undefined);
+  assert.ok(env.JWT_SECRET !== undefined);
 
   router.get('/', async ctx => {
     ctx.body = 'Hello, swordsman!';
