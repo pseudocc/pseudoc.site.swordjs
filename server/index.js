@@ -30,7 +30,7 @@ if (require.main == module) {
 
 function try_get_env() {
   const env_output = require('dotenv').config({
-    path: path.join(__dirname, '.env')
+    path: path.resolve(__dirname, '..', '.env')
   });
   if (env_output.error) {
     console.error(env_output.error);
