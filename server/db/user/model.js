@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const USER_STATES = require('./state');
+const states = require('./state');
 
 function init_model() {
   /**
@@ -26,7 +26,7 @@ function init_model() {
     },
     state: {
       type: Number,
-      default: USER_STATES.NORMAL
+      default: states.NORMAL
     },
     last_login: Date,
     created: {
@@ -36,7 +36,7 @@ function init_model() {
   });
 
   schema.methods.can_play = function can_play() {
-    return this.state == USER_STATES.NORMAL;
+    return this.state == states.NORMAL;
   };
 
   schema.methods.update_display = function update_display(display) {
